@@ -1,11 +1,11 @@
-// Package gigasecond providees giga function
+// Package gigasecond provides a function to add giga seconds to given time
 package gigasecond
 
 import "time"
 
-const testVersion = 4 // find the value in gigasecond_test.go
+const testVersion = 4
 
-// AddGigasecond adds 1000,000,000
-func AddGigasecond(in time.Time) time.Time {
-	return in.Add(time.Second * 1e9)
+// AddGigasecond adds 1000,000,000 seconds to given time
+func AddGigasecond(originTime time.Time) time.Time {
+	return originTime.Add(time.Second * 1e9)
 }
