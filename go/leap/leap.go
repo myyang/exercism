@@ -1,23 +1,23 @@
 /*
-Package leap provides function to check leap
+Package leap provides a function to check leap year
 
-Here's infomation about leap year:
+What's leap year? Please see: https://en.wikipedia.org/wiki/Leap_year .
 
-The tricky thing here is that a leap year in the Gregorian calendar occurs:
-
-```plain
-on every year that is evenly divisible by 4
-  except every year that is evenly divisible by 100
-    unless the year is also evenly divisible by 400
-```
+And the tricky thing here is that a leap year in the Gregorian calendar occurs:
+	on every year that is evenly divisible by 4
+	except every year that is evenly divisible by 100
+	unless the year is also evenly divisible by 400
 
 */
-
 package leap
 
 const testVersion = 2
 
-// IsLeapYear returns a bool to indicate year is leap or not
+// IsLeapYear returns a bool to indicate year is leap or not.
+// Ex:
+//     fmt.Print(IsLeapYear(1900)) # false
+//     fmt.Print(IsLeapYear(2000)) # true
+//     fmt.Print(IsLeapYear(2004)) # true
 func IsLeapYear(year int) bool {
 	return year%4 == 0 && year%100 != 0 || year%400 == 0
 }
