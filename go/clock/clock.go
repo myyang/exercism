@@ -1,4 +1,8 @@
-// Package clock provides a simple naive clock
+/*
+Package clock provides a simple naive clock that
+can be initialized and adjusted, besides, it uses
+24-hour time string while printing.
+*/
 package clock
 
 import (
@@ -18,8 +22,7 @@ type Clock struct {
 // New a clock instance
 func New(hour, minute int) Clock {
 	clk := Clock{hour*60 + minute}
-	clk.refresh()
-	return clk
+	return clk.refresh()
 }
 
 // String format into "HH:MM"
@@ -30,11 +33,10 @@ func (clk Clock) String() string {
 // Add minutes to affect value
 func (clk Clock) Add(minutes int) Clock {
 	clk.minute += minutes
-	clk.refresh()
-	return clk
+	return clk.refresh()
 }
 
-func (clk *Clock) refresh() {
+func (clk *Clock) refresh() Clock {
 	for clk.minute < 0 {
 		clk.minute += minutesADay
 	}
@@ -42,4 +44,5 @@ func (clk *Clock) refresh() {
 	for clk.minute > minutesADay {
 		clk.minute -= minutesADay
 	}
+	return *clk
 }
