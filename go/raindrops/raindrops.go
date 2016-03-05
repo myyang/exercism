@@ -7,13 +7,18 @@ import (
 
 const testVersion = 2
 
+// Pair defines primary number and its mapping string
+type Pair struct {
+	num int
+	str string
+}
+
 var (
-	smap = map[int]string{
-		3: "Pling",
-		5: "Plang",
-		7: "Plong",
+	checkFacs = []Pair{
+		{3, "Pling"},
+		{5, "Plang"},
+		{7, "Plong"},
 	}
-	checkFacs = []int{3, 5, 7}
 )
 
 // Convert int to string
@@ -31,9 +36,9 @@ func Convert(i int) string {
 	return s
 }
 
-func facStr(i, fac int) string {
-	if i%fac == 0 {
-		return smap[fac]
+func facStr(i int, fac Pair) string {
+	if i%fac.num == 0 {
+		return fac.str
 	}
 	return ""
 }
