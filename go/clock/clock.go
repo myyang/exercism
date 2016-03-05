@@ -36,7 +36,7 @@ func (clk Clock) Add(minutes int) Clock {
 	return clk.refresh()
 }
 
-func (clk *Clock) refresh() Clock {
+func (clk Clock) refresh() Clock {
 	for clk.minute < 0 {
 		clk.minute += minutesADay
 	}
@@ -44,5 +44,5 @@ func (clk *Clock) refresh() Clock {
 	for clk.minute > minutesADay {
 		clk.minute -= minutesADay
 	}
-	return *clk
+	return clk
 }
