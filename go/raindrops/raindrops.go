@@ -7,14 +7,13 @@ import (
 
 const testVersion = 2
 
-// Pair defines primary number and its mapping string
-type Pair struct {
+type pair struct {
 	num int
 	str string
 }
 
 var (
-	checkFacs = []Pair{
+	primePairs = []pair{
 		{3, "Pling"},
 		{5, "Plang"},
 		{7, "Plong"},
@@ -25,7 +24,7 @@ var (
 func Convert(i int) string {
 	s := ""
 
-	for _, v := range checkFacs {
+	for _, v := range primePairs {
 		s += facStr(i, v)
 	}
 
@@ -36,7 +35,7 @@ func Convert(i int) string {
 	return s
 }
 
-func facStr(i int, fac Pair) string {
+func facStr(i int, fac pair) string {
 	if i%fac.num == 0 {
 		return fac.str
 	}
