@@ -27,7 +27,7 @@ func New(hour, minute int) Clock {
 
 // String format into "HH:MM"
 func (clk Clock) String() string {
-	return fmt.Sprintf("%.2d:%.2d", clk.minute/60%24, clk.minute%60)
+	return fmt.Sprintf("%.2d:%.2d", clk.minute/60, clk.minute%60)
 }
 
 // Add minutes to affect value
@@ -41,7 +41,7 @@ func (clk Clock) refresh() Clock {
 		clk.minute += minutesADay
 	}
 
-	for clk.minute > minutesADay {
+	for clk.minute >= minutesADay {
 		clk.minute -= minutesADay
 	}
 	return clk
