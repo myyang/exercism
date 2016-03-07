@@ -18,6 +18,8 @@ const testVersion = 2
 //     fmt.Print(IsLeapYear(1900)) # false
 //     fmt.Print(IsLeapYear(2000)) # true
 //     fmt.Print(IsLeapYear(2004)) # true
+//
+// Currently,testing positive year value only.
 func IsLeapYear(year int) bool {
 	return year%4 == 0 && year%100 != 0 || year%400 == 0
 }
