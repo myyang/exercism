@@ -25,7 +25,9 @@ func Convert(i int) string {
 	s := ""
 
 	for _, v := range primePairs {
-		s += facStr(i, v)
+		if i%v.num == 0 {
+			s += v.str
+		}
 	}
 
 	if s == "" {
@@ -33,11 +35,4 @@ func Convert(i int) string {
 	}
 
 	return s
-}
-
-func facStr(i int, fac pair) string {
-	if i%fac.num == 0 {
-		return fac.str
-	}
-	return ""
 }
