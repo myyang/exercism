@@ -19,7 +19,7 @@ type Clock struct {
 	minute int
 }
 
-// New a clock instance
+// New a value of type Clock
 func New(hour, minute int) Clock {
 	clk := Clock{hour*60 + minute}
 	return clk.refresh()
