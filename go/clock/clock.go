@@ -15,34 +15,27 @@ const (
 )
 
 // Clock is a time-only naive clock
-type Clock struct {
-	minute int
-}
+type Clock int
 
 // New a value of type Clock
 func New(hour, minute int) Clock {
-	clk := Clock{hour*60 + minute}
-	return clk.refresh()
+	return Clock(hour%24*60 + minute).Add(0)
 }
 
 // String format into "HH:MM"
 func (clk Clock) String() string {
-	return fmt.Sprintf("%.2d:%.2d", clk.minute/60, clk.minute%60)
+	return fmt.Sprintf("%.2d:%.2d", clk/60, clk%60)
 }
 
 // Add minutes to affect value
 func (clk Clock) Add(minutes int) Clock {
-	clk.minute += minutes
-	return clk.refresh()
-}
-
-func (clk Clock) refresh() Clock {
-	for clk.minute < 0 {
-		clk.minute += minutesADay
+	mins := int(clk) + minutes
+	for mins < 0 {
+		mins += minutesADay
 	}
 
-	for clk.minute >= minutesADay {
-		clk.minute -= minutesADay
+	for mins >= minutesADay {
+		mins -= minutesADay
 	}
-	return clk
+	return Clock(mins)
 }
