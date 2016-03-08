@@ -24,25 +24,28 @@ package pascal
 // Triangle returns a pascal triangle
 // represneted with int array of array
 func Triangle(n int) [][]int {
-	r := [][]int{{1}, {1, 1}}
+	result := [][]int{{1}, {1, 1}}
 	switch {
 	case n < 1:
 		return [][]int{}
 	case n == 1:
-		return r[:1]
+		return result[:1]
 	case n == 2:
-		return r
+		return result
 	}
 
 	for i := 3; i < n+1; i++ {
-		t := r[len(r)-1]
-		s := make([]int, i)
-		s[0], s[i-1] = 1, 1
+		lastRow := result[len(result)-1]
+		// new row
+		newRow := make([]int, i)
+		// fill head and tail
+		newRow[0], newRow[i-1] = 1, 1
 		for j := 1; j < i/2+1; j++ {
-			c := t[j] + t[j-1]
-			s[j], s[i-1-j] = c, c
+			// count row value
+			value := lastRow[j] + lastRow[j-1]
+			newRow[j], newRow[i-1-j] = value, value
 		}
-		r = append(r, s)
+		result = append(result, newRow)
 	}
-	return r
+	return result
 }
