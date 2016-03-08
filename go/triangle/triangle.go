@@ -10,30 +10,14 @@ import (
 const testVersion = 2
 
 // Kind defines interface
-type Kind interface{}
-
-type nat struct {
-	Kind
-}
-
-type equ struct {
-	Kind
-}
-
-type iso struct {
-	Kind
-}
-
-type sca struct {
-	Kind
-}
+type Kind int
 
 // Types definition
-var (
-	NaT nat // NaT not a tri
-	Equ equ // Equ equalence
-	Iso iso // Iso isolence
-	Sca sca // Sca scalence
+const (
+	NaT Kind = iota // NaT not a tri
+	Equ             // Equ equalence
+	Iso             // Iso isolence
+	Sca             // Sca scalence
 )
 
 // KindFromSides determins triangle types
