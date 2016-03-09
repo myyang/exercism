@@ -7,13 +7,11 @@ import (
 
 const testVersion = 2
 
-type pair struct {
-	num int
-	str string
-}
-
 var (
-	primePairs = []pair{
+	primePairs = []struct {
+		num int
+		str string
+	}{
 		{3, "Pling"},
 		{5, "Plang"},
 		{7, "Plong"},
