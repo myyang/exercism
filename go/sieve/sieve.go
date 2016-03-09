@@ -16,16 +16,12 @@ func Generate(out chan int, limit int) {
 
 // Filter primes
 func Filter(in chan int, out chan int, prime int) {
-	for {
-		i := <-in
-		if i == 0 {
-			close(out)
-			break
-		}
+	for i := range in {
 		if i%prime != 0 {
 			out <- i
 		}
 	}
+	close(out)
 }
 
 // Sieve returns array
