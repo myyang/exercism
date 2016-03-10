@@ -20,7 +20,7 @@ var (
 
 // Convert int to string
 func Convert(i int) string {
-	s := ""
+	var s string
 
 	for _, v := range primePairs {
 		if i%v.num == 0 {
