@@ -29,7 +29,7 @@ func Convert(i int) string {
 	}
 
 	if s == "" {
-		return fmt.Sprintf("%d", i)
+		return fmt.Sprint(i)
 	}
 
 	return s
