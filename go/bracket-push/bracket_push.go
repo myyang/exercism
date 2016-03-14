@@ -3,6 +3,12 @@ package brackets
 
 const testVersion = 3
 
+var brackMap = map[string]string{
+	")": "(",
+	"]": "[",
+	"}": "{",
+}
+
 type stackError struct{}
 
 // Error message
@@ -48,25 +54,11 @@ func Bracket(str string) (bool, error) {
 		if s == "(" || s == "{" || s == "[" {
 			st.push(s)
 			continue
-		}
-		switch s {
-		case ")":
+		} else if s == ")" || s == "]" || s == "}" {
 			r, err := st.pop()
-			if err != nil || r != "(" {
+			if err != nil || r != brackMap[s] {
 				return false, nil
 			}
-		case "]":
-			r, err := st.pop()
-			if err != nil || r != "[" {
-				return false, nil
-			}
-		case "}":
-			r, err := st.pop()
-			if err != nil || r != "{" {
-				return false, nil
-			}
-		default:
-			continue
 		}
 	}
 	return st.empty(), nil
