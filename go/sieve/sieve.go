@@ -7,7 +7,7 @@ Optimized ref: http://play.golang.org/p/9U22NfrXeq
 package sieve
 
 // Generate all values
-func Generate(out chan int, limit int) {
+func Generate(out chan<- int, limit int) {
 	for i := 2; i < limit+1; i++ {
 		out <- i
 	}
@@ -15,7 +15,7 @@ func Generate(out chan int, limit int) {
 }
 
 // Filter primes
-func Filter(in chan int, out chan int, prime int) {
+func Filter(in <-chan int, out chan<- int, prime int) {
 	for i := range in {
 		if i%prime != 0 {
 			out <- i
@@ -32,8 +32,8 @@ func Sieve(limit int) []int {
 	result := []int{}
 
 	for {
-		tmp := <-values
-		if tmp == 0 {
+		tmp, ok := <-values
+		if !ok {
 			break
 		}
 		result = append(result, tmp)
